@@ -1,5 +1,5 @@
 import NaoEncontrado from "../erros/NaoEncontrado.js";
-import livros from "../models/Livro.js";
+import { livros } from "../models/index.js";
 
 class LivroController {
   static listarLivros = async (req, res, next) => {
@@ -51,8 +51,6 @@ class LivroController {
         $set: req.body,
       });
 
-      console.log(livroResultado);
-
       if (livroResultado !== null) {
         res.status(200).send({ message: "Livro atualizado com sucesso" });
       } else {
@@ -68,8 +66,6 @@ class LivroController {
       const id = req.params.id;
 
       const livroResultado = await livros.findByIdAndDelete(id);
-
-      console.log(livroResultado);
 
       if (livroResultado !== null) {
         res.status(200).send({ message: "Livro removido com sucesso" });

@@ -1,4 +1,4 @@
-import RequisicaoIncorreta from "./requisicaoIncorretas.js";
+import RequisicaoIncorreta from "./RequisicaoIncorreta.js";
 
 class ErroValidacao extends RequisicaoIncorreta {
   constructor(erro) {
