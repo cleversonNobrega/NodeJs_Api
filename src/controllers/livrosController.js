@@ -4,7 +4,14 @@ import { livros } from "../models/index.js";
 class LivroController {
   static listarLivros = async (req, res, next) => {
     try {
-      const livrosResultado = await livros.find().populate("autor").exec();
+      const { limite = 5, pagina = 1 } = req.query;
+
+      const livrosResultado = await livros
+        .find()
+        .skip((pagina - 1) * limite)
+        .limit(limite)
+        .populate("autor")
+        .exec();
 
       res.status(200).json(livrosResultado);
     } catch (erro) {
