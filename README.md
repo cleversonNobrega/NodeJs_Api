@@ -6,15 +6,16 @@ API RESTful desenvolvida com **Node.js**, **Express** e **MongoDB/Mongoose** par
  
 ## 🚀 Tecnologias Utilizadas
  
-![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Express](https://img.shields.io/badge/Express-5.2.1-000000?style=for-the-badge&logo=express&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-7.2.0-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
-![Mongoose](https://img.shields.io/badge/Mongoose-7.3.4-880000?style=for-the-badge&logo=mongoose&logoColor=white)
-![dotenv](https://img.shields.io/badge/dotenv-17.4.2-ECD53F?style=for-the-badge&logo=dotenv&logoColor=black)
-![Nodemon](https://img.shields.io/badge/Nodemon-3.1.14-76D04B?style=for-the-badge&logo=nodemon&logoColor=white)
-![ESLint](https://img.shields.io/badge/ESLint-10.2.1-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)
+| Tecnologia | Versão | Finalidade |
+|---|---|---|
+| [Node.js](https://nodejs.org/) | LTS | Runtime JavaScript |
+| [Express.js](https://expressjs.com/) | ^4.x | Framework web |
+| [MongoDB](https://www.mongodb.com/) | — | Banco de dados NoSQL |
+| [Mongoose](https://mongoosejs.com/) | ^7.x | ODM para MongoDB |
+| [Nodemon](https://nodemon.io/) | — | Hot reload em desenvolvimento |
+| [Dotenv](https://github.com/motdotla/dotenv) | — | Variáveis de ambiente |
  
-----
+---
  
 ## 📁 Estrutura do Projeto
  
