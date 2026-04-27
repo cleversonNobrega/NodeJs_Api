@@ -1,120 +1,20 @@
-# 📖 NodeJs_Api
+# 📚 NodeJs API — Gerenciamento de Livros e Autores
  
-API RESTful desenvolvida em Node.js com Express e MongoDB para gerenciamento de um acervo de **livros e autores**.
- 
----
- 
-## 🚀 Funcionalidades
- 
-- CRUD completo de **Livros** (cadastrar, listar, buscar por ID, buscar por editora, atualizar, excluir)
-- CRUD completo de **Autores** (cadastrar, listar, buscar por ID, atualizar, excluir)
-- Ao cadastrar um livro, os dados do autor são embutidos automaticamente no documento
-- Conexão com banco de dados MongoDB via Mongoose
-- Configuração de ambiente com variáveis `.env`
----
- 
-## 🛠️ Tecnologias
- 
-- [Node.js](https://nodejs.org/) (ES Modules)
-- [Express 5](https://expressjs.com/)
-- [MongoDB](https://www.mongodb.com/) + [Mongoose](https://mongoosejs.com/)
-- [dotenv](https://github.com/motdotla/dotenv)
-- [Nodemon](https://nodemon.io/) — hot reload em desenvolvimento
----
- 
-## 📦 Instalação
- 
-Clone o repositório e instale as dependências:
- 
-```bash
-git clone https://github.com/cleversonNobrega/NodeJs_Api.git
-cd NodeJs_Api
-npm install
-```
- 
-> Requisito: **Node.js v18+** e uma instância do **MongoDB** rodando (local ou Atlas)
+API RESTful desenvolvida com **Node.js**, **Express** e **MongoDB/Mongoose** para gerenciamento de um catálogo de livros e autores.
  
 ---
  
-## ⚙️ Configuração
+## 🚀 Tecnologias Utilizadas
  
-Crie um arquivo `.env` na raiz do projeto com a string de conexão do MongoDB:
- 
-```env
-DB_CONNECTION_STRING=mongodb://localhost:27017/nome-do-banco
-```
- 
----
- 
-## ▶️ Como executar
- 
-```bash
-# Modo desenvolvimento (com hot reload)
-npm run dev
- 
-# Modo produção
-node server.js
-```
- 
-O servidor iniciará na porta **3000**.
- 
----
- 
-## 🔗 Endpoints
- 
-### Livros — `/livros`
- 
-| Método | Rota | Descrição |
-|--------|------|-----------|
-| `GET` | `/livros` | Lista todos os livros |
-| `GET` | `/livros/:id` | Busca um livro por ID |
-| `GET` | `/livros/busca?editora=` | Busca livros por editora |
-| `POST` | `/livros` | Cadastra um novo livro |
-| `PUT` | `/livros/:id` | Atualiza um livro |
-| `DELETE` | `/livros/:id` | Remove um livro |
- 
-### Autores — `/autores`
- 
-| Método | Rota | Descrição |
-|--------|------|-----------|
-| `GET` | `/autores` | Lista todos os autores |
-| `GET` | `/autores/:id` | Busca um autor por ID |
-| `POST` | `/autores` | Cadastra um novo autor |
-| `PUT` | `/autores/:id` | Atualiza um autor |
-| `DELETE` | `/autores/:id` | Remove um autor |
- 
----
- 
-## 📋 Exemplos de uso
- 
-### Cadastrar um autor
- 
-```http
-POST /autores
-Content-Type: application/json
- 
-{
-  "nome": "Machado de Assis",
-  "nacionalidade": "Brasileiro"
-}
-```
- 
-### Cadastrar um livro
- 
-```http
-POST /livros
-Content-Type: application/json
- 
-{
-  "titulo": "Dom Casmurro",
-  "editora": "Ática",
-  "preco": 39.90,
-  "paginas": 256,
-  "autor": "<id-do-autor>"
-}
-```
- 
-> O campo `autor` recebe o `_id` de um autor já cadastrado. Os dados do autor serão incorporados automaticamente ao documento do livro.
+| Tecnologia | Versão |
+|---|---|
+| Node.js | >= 18.x |
+| Express | ^5.2.1 |
+| Mongoose | ^7.3.4 |
+| MongoDB | ^7.2.0 |
+| dotenv | ^17.4.2 |
+| nodemon | ^3.1.14 |
+| ESLint | ^10.2.1 |
  
 ---
  
@@ -122,24 +22,164 @@ Content-Type: application/json
  
 ```
 NodeJs_Api/
-├── src/
-│   ├── app.js                  # Configuração do Express e conexão com o banco
-│   ├── config/
-│   │   └── dbConnect.js        # Conexão com o MongoDB via Mongoose
-│   ├── controllers/
-│   │   ├── livrosController.js # Lógica de negócio dos livros
-│   │   └── autorController.js  # Lógica de negócio dos autores
-│   ├── models/
-│   │   ├── livros.js           # Schema Mongoose de Livro
-│   │   └── Autor.js            # Schema Mongoose de Autor
-│   └── routes/
-│       ├── index.js            # Registro central das rotas
-│       ├── livrosRoutes.js     # Rotas de livros
-│       └── autoresRoutes.js    # Rotas de autores
-├── server.js                   # Ponto de entrada da aplicação
-├── .env                        # Variáveis de ambiente (não versionado)
-└── package.json
+├── server.js                  # Ponto de entrada da aplicação
+├── package.json
+└── src/
+    ├── app.js                 # Configuração do Express
+    ├── config/
+    │   └── dbConnect.js       # Conexão com o MongoDB
+    ├── controllers/
+    │   ├── livrosController.js
+    │   └── autoresController.js
+    ├── models/
+    │   ├── Livro.js
+    │   └── Autor.js
+    ├── routes/
+    │   ├── index.js
+    │   ├── livrosRoutes.js
+    │   └── autoresRoutes.js
+    ├── middlewares/
+    │   ├── manipulador404.js
+    │   ├── manipuladorDeErros.js
+    │   └── paginas.js
+    └── Erros/
+        ├── erroBase.js
+        ├── erroValidacao.js
+        ├── naoEncontrado.js
+        └── RequisicaoIncorreta.js
 ```
  
 ---
  
+## ⚙️ Instalação e Configuração
+ 
+### Pré-requisitos
+ 
+- [Node.js](https://nodejs.org/) >= 18.x
+- [MongoDB](https://www.mongodb.com/) em execução local ou uma instância na nuvem (ex: MongoDB Atlas)
+### 1. Clone o repositório
+ 
+```bash
+git clone https://github.com/cleversonNobrega/NodeJs_Api.git
+cd NodeJs_Api
+```
+ 
+### 2. Instale as dependências
+ 
+```bash
+npm install
+```
+ 
+### 3. Configure as variáveis de ambiente
+ 
+Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
+ 
+```env
+PORT=3000
+DB_CONNECTION_STRING=mongodb://localhost:27017/nome_do_banco
+```
+ 
+> 💡 Substitua `mongodb://localhost:27017/nome_do_banco` pela sua string de conexão do MongoDB.
+ 
+### 4. Inicie o servidor
+ 
+**Modo desenvolvimento (com hot reload):**
+```bash
+npm run dev
+```
+ 
+**Modo produção:**
+```bash
+node server.js
+```
+ 
+O servidor estará disponível em: `http://localhost:3000`
+ 
+---
+ 
+## 🔌 Endpoints da API
+ 
+### Base
+ 
+| Método | Rota | Descrição |
+|---|---|---|
+| GET | `/` | Retorna informações básicas da API |
+ 
+---
+ 
+### 📖 Livros — `/livros`
+ 
+| Método | Rota | Descrição |
+|---|---|---|
+| GET | `/livros` | Lista todos os livros (paginado) |
+| GET | `/livros/busca` | Busca livros por filtros (paginado) |
+| GET | `/livros/:id` | Retorna um livro pelo ID |
+| POST | `/livros` | Cadastra um novo livro |
+| PUT | `/livros/:id` | Atualiza um livro pelo ID |
+| DELETE | `/livros/:id` | Remove um livro pelo ID |
+ 
+#### Exemplo de corpo para criação de livro (POST `/livros`)
+ 
+```json
+{
+  "titulo": "Node.js: Do Zero à Produção",
+  "autor": "64b1f2c3d4e5f6a7b8c9d0e1",
+  "editora": "Casa do código",
+  "numeroPaginas": 320
+}
+```
+ 
+> ⚠️ **Editoras aceitas:** `"Casa do código"` ou `"Alura"`  
+> ⚠️ **Número de páginas:** deve estar entre `10` e `5000`
+ 
+---
+ 
+### 👤 Autores — `/autores`
+ 
+| Método | Rota | Descrição |
+|---|---|---|
+| GET | `/autores` | Lista todos os autores (paginado) |
+| GET | `/autores/:id` | Retorna um autor pelo ID |
+| POST | `/autores` | Cadastra um novo autor |
+| PUT | `/autores/:id` | Atualiza um autor pelo ID |
+| DELETE | `/autores/:id` | Remove um autor pelo ID |
+ 
+#### Exemplo de corpo para criação de autor (POST `/autores`)
+ 
+```json
+{
+  "nome": "Fulano de Tal",
+  "nacionalidade": "Brasileira"
+}
+```
+ 
+---
+ 
+## 📐 Modelos de Dados
+ 
+### Livro
+ 
+| Campo | Tipo | Obrigatório | Restrições |
+|---|---|---|---|
+| `titulo` | String | ✅ | — |
+| `autor` | ObjectId (ref: autores) | ✅ | — |
+| `editora` | String | ✅ | `"Casa do código"` ou `"Alura"` |
+| `numeroPaginas` | Number | ❌ | Entre 10 e 5000 |
+ 
+### Autor
+ 
+| Campo | Tipo | Obrigatório |
+|---|---|---|
+| `nome` | String | ✅ |
+| `nacionalidade` | String | ❌ |
+ 
+---
+ 
+## 🛡️ Tratamento de Erros
+ 
+A API conta com middlewares globais para tratamento de erros:
+ 
+- **404 Not Found** — para rotas não existentes
+- **Erros de Validação** — campos inválidos ou ausentes retornam mensagens descritivas
+- **Erros Genéricos** — capturados e formatados de forma padronizada
+---
